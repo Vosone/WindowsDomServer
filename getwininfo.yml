@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Get whoami information
+    ansible.windows.win_whoami:
+
+  - name: Get info for all installed services
+    ansible.windows.win_service_info:
+      name: MSSQL$SQLEXPRESS
+    register: service_info
+
