@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Create directory structure
+    ansible.windows.win_file:
+      path: C:\install
+      state: directory
+
+  - name: Copy SSMS Install file local to Remote Host
+    ansible.windows.win_copy:
+      src: SSMS-Setup-ENU.exe
+      dest: C:\install
+
+  - name: Uninstall SSMS on remote host
+    ansible.windows.win_command:
+      cmd: C:\install\SSMS-Setup-ENU.exe /uninstall /quiet /norestart
+

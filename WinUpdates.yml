@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Install all updates and reboot as many times as needed
+    ansible.windows.win_updates:
+      category_names: '*'
+      reboot: yes
+      state: installed
+
+  - name: Install all security updates with automatic reboots
+    ansible.windows.win_updates:
+      category_names:
+      - SecurityUpdates
+      reboot: yes
+
+  - name: Run Update Session Orchestrator check to clear GUI cached results
+    win_shell: |
+      UsoClient RefreshSettings
+      UsoClient ScanInstallWait

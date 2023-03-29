@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+
+
+  - name: Remove Notpad++ an 7zip with remote shell
+    ansible.windows.win_shell: C:\temp\remnotandzip.ps1 >> C:\somelog.txt

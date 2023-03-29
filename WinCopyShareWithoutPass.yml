@@ -1,0 +1,17 @@
+---
+- hosts: all
+
+
+ 
+
+
+  tasks:
+     
+
+
+  - name: copy a file from a fileshare with custom credentials
+    ansible.windows.win_copy:
+      src: \\10.0.0.126\company\Thunder.msi
+      dest: C:\install
+      remote_src: true
+

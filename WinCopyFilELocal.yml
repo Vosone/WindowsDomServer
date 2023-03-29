@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Search-only, return list of found updates (if any), log to C:\ansible_wu.txt
+    ansible.windows.win_updates:
+      category_names: SecurityUpdates
+      state: searched
+      log_path: C:\ansible_wu.txt
+
+  - name: Store file into /tmp/fetched/host.example.com/tmp/somefile
+    ansible.builtin.fetch:
+      src: C:\ansible_wu.txt
+      dest: /home/malon/WindowsServer/tmp/fetched

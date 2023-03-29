@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Install Print-Server with sub features and management tools
+    ansible.windows.win_feature:
+      name: Print-Server
+      state: present
+      include_sub_features: yes
+      include_management_tools: yes
+    register: win_feature
+
+  - name: Install LPD-Print-Server with sub features and management tools
+    ansible.windows.win_feature:
+      name: Print-LPD-Service
+      state: present
+  
+  - name: Reboot if installing Print-Server feature requires it
+    ansible.windows.win_reboot:
+    when: win_feature.reboot_required

@@ -1,0 +1,16 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Download Notepad to specified path
+    ansible.windows.win_get_url:
+      url: https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.4.9/npp.8.4.9.Installer.x64.exe
+      dest: C:\temp
+
+
+  - name: Install Notepad 
+    ansible.windows.win_package:
+      path: C:\temp\npp.8.4.9.Installer.x64.exe
+      product_id: Notepad++
+      arguments: '/S /D=C:\Program Files\Notepad\'
+      state: present

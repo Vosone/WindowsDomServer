@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+
+
+  - name: Remove Notpad++ an 7zip with remote shell
+    ansible.windows.win_powershell:
+        script: |
+          Invoke-Command -ScriptBlock {Start-Process -FilePath "C:\Program Files\7-Zipi\Uninstall.exe" -ArgumentList “/S” -Wait}
+          Invoke-Command -ScriptBlock {Start-Process -FilePath "C:\Program Files\Notepad\uninstall.exe” -ArgumentList “/S” -Wait}
+          Invoke-Command -ScriptBlock {'"C:\Program Files\Mozilla Thunderbird\uninstall\helper.exe" /S' | cmd}
+          Invoke-Command -ScriptBlock {'"C:\Program Files (x86)\Mozilla Maintenance Service\uninstall.exe" /S' | cmd}
+          

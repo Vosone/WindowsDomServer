@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Copy a folder recursively where the source is on the remote host
+    ansible.windows.win_copy:
+      src: \\10.0.0.126\company\Thunder.msi
+      dest: C:\install
+      remote_src: true
+    vars:
+      ansible_become: true
+      ansible_become_method: runas
+      ansible_become_user: localhost\malon
+      ansible_become_password: Findme
+      ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+
+  - name: Install Thunderbird 
+    ansible.windows.win_package:
+      path: C:\install\Thunder.msi
+      state: present
+

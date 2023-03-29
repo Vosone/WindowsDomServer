@@ -1,0 +1,33 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Create directory structure
+    ansible.windows.win_file:
+      path: C:\install\sql
+      state: directory
+
+  - name: Copy SQL Install file local to Remote Host
+    ansible.windows.win_copy:
+      src: SQLEXPR_x64_ENU.exe
+      dest: C:\install
+        
+  - name: Prepare SQL Setup file on remote host
+    ansible.windows.win_command:
+      cmd: C:\install\SQLEXPR_x64_ENU.exe /q /x:C:\install\sql\SQLEXPR_2019
+
+        #  - name: Copy SQL config file local to Remote Host
+        #    ansible.windows.win_copy:
+        #      src: ConfigurationFile.ini
+        #      dest: C:\install\sql\SQLEXPR_2019
+
+  - name: Uninstall SQL Express on Remote Host
+    ansible.windows.win_package:
+      path: C:\install\SQL\SQLEXPR_2019\Setup.exe
+      arguments: /Action=uninstall /Q /FEATURES=SQLENGINE,AS,IS,Tools /INSTANCENAME=SQLEXPRESS 
+      state: present
+    become: yes
+    become_method: runas
+    become_user: malon
+    become_flags: logon_type=interactive logon_flags=with_profile
+

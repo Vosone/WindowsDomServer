@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks:
+  
+  - name: Create directory structure
+    ansible.windows.win_file:
+      path: C:\install\
+      state: directory
+
+  - name: Download 7zip to specified path
+    win_get_url:
+      url: https://www.7-zip.org/a/7z2201-x64.exe
+      dest: C:\install
+
+  - name: Install 7zip from local folder
+    ansible.windows.win_package:
+      path: C:\install\7z2201-x64.exe
+      product_id: 7-Zip
+      arguments: /S /D="C:\Program Files\7-Zipi"
+      state: present
+
