@@ -1,5 +1,7 @@
 [win]
-domsv1.intern.voso.ch
+domsv3.intern.voso.ch
+domcon1.intern.voso.ch
+domsv2.intern.voso.ch
 
 [win:vars]
 ansible_user = simone@INTERN.VOSO.CH

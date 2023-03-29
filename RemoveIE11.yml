@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Remove IE11 
+    ansible.windows.win_powershell:
+      script: |
+        Disable-WindowsOptionalFeature -FeatureName Internet-Explorer-Optional-amd64 –Online -NoRestart
+
+  - name: Reboot the machine with all defaults
+    ansible.windows.win_reboot:
