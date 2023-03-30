@@ -9,7 +9,7 @@
 
   - name: copy ssms install file from share to remote host
     ansible.windows.win_copy:
-      src: \\10.0.0.126\company\SSMS-Setup-ENU.exe
+      src: \\domsv4.intern.voso.ch\company\SSMS-Setup-ENU.exe
       dest: C:\install
       remote_src: true
 

@@ -9,7 +9,7 @@
 
   - name: copy adobe install file from share to remote host
     ansible.windows.win_copy:
-      src: \\10.0.0.126\company\AcroRdrDC2200320322_en_US.exe
+      src: \\domsv4.intern.voso.ch\company\AcroRdrDC2200320322_en_US.exe
       dest: C:\install
       remote_src: true
 
