@@ -27,8 +27,4 @@
       path: C:\install\SQL\SQLEXPR_2019\Setup.exe
       arguments: /Action=install /Q /IAcceptSQLServerLicenseTerms=true /INSTANCENAME=SQLEXPRESS /CONFIGURATIONFILE=C:\Install\sql\SQLEXPR_2019\mysqlconf.ini
       state: present
-    become: yes
-    become_method: runas
-    become_user: malon
-    become_flags: logon_type=interactive logon_flags=with_profile
 
